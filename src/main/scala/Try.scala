@@ -15,15 +15,17 @@ object Try {
     //val lines = ssc.socketTextStream("localhost", 9999)
     val lines=sc.textFile("/home/ubuntu/data",2)
     lines.map(extractIp)
-    lines.foreach(println)
+    //lines.foreach(println)
 
     //ssc.start()
     //ssc.awaitTermination()
 
 
   }
-  def extractIp(line: String): Array[String] =
+  def extractIp(line: String): String =
   {
-    line.split(' ')
+    val splits=line.split(' ')
+    splits(0)
+
   }
 }
