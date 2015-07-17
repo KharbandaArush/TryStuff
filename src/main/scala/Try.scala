@@ -6,8 +6,10 @@ object Try {
   def main(args: Array[String]): Unit ={
 
 
+    try{
     System.setProperty("spark.cleaner.ttl","600")
-
+    //System.setProperty("spark.executor.memory","8g")
+    val start=System.currentTimeMillis()
     val sc = new SparkContext("local[2]","Dataflow")
 
 
@@ -16,11 +18,22 @@ object Try {
     val lines=sc.textFile("/home/ubuntu/data",2)
     val ips=lines.map(extractIp)
     ips.collect()
+    /*val csv = sc.textFile("file.csv")  // original file
+    val data = csv.map(line => line.split(",").map(elem => elem.trim)) //lines in rows
+    val header = new SimpleCSVHeader(data.take(1)(0)) // we build our header with the first line
+    val rows = data.filter(line => header(line,"user") != "user") // filter the header out
+    val users = rows.map(row => header(row,"user")
+    val usersByHits = rows.map(row => header(row,"user") -> header(row,"hits").toInt)*/
     //lines.foreach(println)
     sc.stop()
     //ssc.start()
     //ssc.awaitTermination()
-
+    val stop=System.currentTimeMillis()
+      print("time taken = " + (stop-start))
+    }
+    catch {
+      case e:Exception => e.printStackTrace()
+    }
 
   }
   def extractIp(line: String): String =
