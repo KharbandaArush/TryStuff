@@ -39,8 +39,6 @@ object Try {
   def extractIp(line: String): String =
   {
     val splits=line.split(' ')
-    println(splits(0))
-    println(splits(0))
     splits(0)
 
   }
