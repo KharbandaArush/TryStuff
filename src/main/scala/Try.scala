@@ -17,7 +17,7 @@ object Try {
     //val lines = ssc.socketTextStream("localhost", 9999)
     val lines=sc.textFile("/home/ubuntu/data",2)
     var linesRepart=lines.repartition(200)
-    val ips=lines.map(extractIp)
+    val ips=linesRepart.map(extractIp)
     val start=System.currentTimeMillis()
     ips.collect()
     val stop=System.currentTimeMillis()
