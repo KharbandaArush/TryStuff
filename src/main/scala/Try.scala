@@ -16,7 +16,7 @@ object Try {
     val lines=sc.textFile("/home/ubuntu/data",2)
     lines.map(extractIp)
     //lines.foreach(println)
-
+    sc.stop()
     //ssc.start()
     //ssc.awaitTermination()
 
